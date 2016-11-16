@@ -30,7 +30,7 @@
         self.URL = URL;
         
         if(![self isiOS7Later]){
-            self.pathComponents = [self JLRoutes_parsePathComponentsiOS7:self.URL.pathComponents];
+            self.pathComponents = [self JLRoutes_parsePathComponentsiOS7];
             self.queryParams= [self JLRoutes_URLParameterDictionaryWithQueryStringiOS7:self.URL.query];
             return self;
         }
@@ -139,7 +139,7 @@
     return [input stringByRemovingPercentEncoding];
 }
 
--(NSArray*)JLRoutes_parsePathComponentsiOS7:(NSString*)str
+-(NSArray*)JLRoutes_parsePathComponentsiOS7
 {
     NSPredicate *filterSlashesPredicate = [NSPredicate predicateWithFormat:@"NOT SELF like '/'"];
     NSArray *pathComponents = [(self.URL.pathComponents ?: @[]) filteredArrayUsingPredicate:filterSlashesPredicate];
